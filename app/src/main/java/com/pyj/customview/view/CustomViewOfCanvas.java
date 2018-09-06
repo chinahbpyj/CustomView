@@ -16,7 +16,7 @@ public class CustomViewOfCanvas extends View {
 
     private int which = 0;
 
-    private String text = "AllYoga in Beijing";
+    private String text = "Yoga in Beijing";
 
     public CustomViewOfCanvas(Context context) {
         super(context);
