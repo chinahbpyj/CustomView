@@ -127,67 +127,67 @@ public class PathFillTypeView extends View {
         canvas.drawPath(path, mPaint);
     }
 
-    private void DIFFERENCE(Canvas canvas){
+    private void DIFFERENCE(Canvas canvas) {
         canvas.translate(mWidth / 2, mHeight / 2);
         mPaint.setStyle(Paint.Style.FILL);
         Path path1 = new Path();
         Path path2 = new Path();
         Path pathOpResult = new Path();
 
-        path1.addCircle(-50,0,60, Path.Direction.CW);
-        path2.addCircle(50,0,60, Path.Direction.CW);
+        path1.addCircle(-50, 0, 60, Path.Direction.CW);
+        path2.addCircle(50, 0, 60, Path.Direction.CW);
 
-        pathOpResult.op(path1,path2, Path.Op.DIFFERENCE);
+        pathOpResult.op(path1, path2, Path.Op.DIFFERENCE);
 
-        canvas.drawPath(pathOpResult,mPaint);
+        canvas.drawPath(pathOpResult, mPaint);
     }
 
-    private void REVERSE_DIFFERENCE(Canvas canvas){
+    private void REVERSE_DIFFERENCE(Canvas canvas) {
         canvas.translate(mWidth / 2, mHeight / 2);
         mPaint.setStyle(Paint.Style.FILL);
         Path path1 = new Path();
         Path path2 = new Path();
         Path pathOpResult = new Path();
 
-        path1.addCircle(-50,0,60, Path.Direction.CW);
-        path2.addCircle(50,0,60, Path.Direction.CW);
+        path1.addCircle(-50, 0, 60, Path.Direction.CW);
+        path2.addCircle(50, 0, 60, Path.Direction.CW);
 
-        pathOpResult.op(path1,path2, Path.Op.REVERSE_DIFFERENCE);
+        pathOpResult.op(path1, path2, Path.Op.REVERSE_DIFFERENCE);
 
-        canvas.drawPath(pathOpResult,mPaint);
+        canvas.drawPath(pathOpResult, mPaint);
     }
 
-    private void INTERSECT(Canvas canvas){
+    private void INTERSECT(Canvas canvas) {
         canvas.translate(mWidth / 2, mHeight / 2);
         mPaint.setStyle(Paint.Style.FILL);
         Path path1 = new Path();
         Path path2 = new Path();
         Path pathOpResult = new Path();
 
-        path1.addCircle(-50,0,60, Path.Direction.CW);
-        path2.addCircle(50,0,60, Path.Direction.CW);
+        path1.addCircle(-50, 0, 60, Path.Direction.CW);
+        path2.addCircle(50, 0, 60, Path.Direction.CW);
 
-        pathOpResult.op(path1,path2, Path.Op.INTERSECT);
+        pathOpResult.op(path1, path2, Path.Op.INTERSECT);
 
-        canvas.drawPath(pathOpResult,mPaint);
+        canvas.drawPath(pathOpResult, mPaint);
     }
 
-    private void UNION(Canvas canvas){
+    private void UNION(Canvas canvas) {
         canvas.translate(mWidth / 2, mHeight / 2);
         mPaint.setStyle(Paint.Style.FILL);
         Path path1 = new Path();
         Path path2 = new Path();
         Path pathOpResult = new Path();
 
-        path1.addCircle(-50,0,60, Path.Direction.CW);
-        path2.addCircle(50,0,60, Path.Direction.CW);
+        path1.addCircle(-50, 0, 60, Path.Direction.CW);
+        path2.addCircle(50, 0, 60, Path.Direction.CW);
 
-        pathOpResult.op(path1,path2, Path.Op.UNION);
+        pathOpResult.op(path1, path2, Path.Op.UNION);
 
-        canvas.drawPath(pathOpResult,mPaint);
+        canvas.drawPath(pathOpResult, mPaint);
     }
 
-    private void XOR(Canvas canvas){
+    private void XOR(Canvas canvas) {
         canvas.translate(mWidth / 2, mHeight / 2);
         mPaint.setStyle(Paint.Style.FILL);
 
@@ -195,35 +195,35 @@ public class PathFillTypeView extends View {
         Path path2 = new Path();
         Path pathOpResult = new Path();
 
-        path1.addCircle(-50,0,60, Path.Direction.CW);
-        path2.addCircle(50,0,60, Path.Direction.CW);
+        path1.addCircle(-50, 0, 60, Path.Direction.CW);
+        path2.addCircle(50, 0, 60, Path.Direction.CW);
 
-        pathOpResult.op(path1,path2, Path.Op.XOR);
+        pathOpResult.op(path1, path2, Path.Op.XOR);
 
-        canvas.drawPath(pathOpResult,mPaint);
+        canvas.drawPath(pathOpResult, mPaint);
     }
 
-    private void computeBounds(Canvas canvas){
-        canvas.translate(mWidth/2,mHeight/2);
+    private void computeBounds(Canvas canvas) {
+        canvas.translate(mWidth / 2, mHeight / 2);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(Color.BLACK);
         RectF rect1 = new RectF();              // 存放测量结果的矩形
 
         Path path = new Path();// 创建Path并添加一些内容
 
-        path.lineTo(100,-50);
-        path.lineTo(100,50);
+        path.lineTo(100, -50);
+        path.lineTo(100, 50);
         path.close();
 
-        path.addCircle(-100,0,100, Path.Direction.CW);
+        path.addCircle(-100, 0, 100, Path.Direction.CW);
 
-        path.computeBounds(rect1,true);         // 测量Path
+        path.computeBounds(rect1, true);         // 测量Path
 
-        canvas.drawPath(path,mPaint);    // 绘制Path
+        canvas.drawPath(path, mPaint);    // 绘制Path
 
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(Color.RED);
-        canvas.drawRect(rect1,mPaint);   // 绘制边界
+        canvas.drawRect(rect1, mPaint);   // 绘制边界
     }
 
     private void eightDiagrams(Canvas canvas) {
@@ -257,7 +257,6 @@ public class PathFillTypeView extends View {
         path.addCircle(0, 0, 200, Path.Direction.CW);
 
         canvas.drawPath(path, mPaint);
-
 
 
         Path path5 = new Path();

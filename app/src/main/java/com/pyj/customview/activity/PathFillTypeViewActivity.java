@@ -19,7 +19,7 @@ import com.pyj.customview.view.PathFillTypeView;
 
 import java.util.ArrayList;
 
-public class PathFillTypeViewActivity extends AppCompatActivity implements View.OnLongClickListener{
+public class PathFillTypeViewActivity extends AppCompatActivity implements View.OnLongClickListener {
 
     private PathFillTypeView fillType;
     private int whichPoint = 0;
@@ -34,7 +34,7 @@ public class PathFillTypeViewActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activty_filltype);
 
-        fillType=findViewById(R.id.fillType);
+        fillType = findViewById(R.id.fillType);
 
         fillType.setOnLongClickListener(this);
     }
@@ -76,7 +76,7 @@ public class PathFillTypeViewActivity extends AppCompatActivity implements View.
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
-                whichPoint=which;
+                whichPoint = which;
 
                 fillType.setShowWhich(which);
             }

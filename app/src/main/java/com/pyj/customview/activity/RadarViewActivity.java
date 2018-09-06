@@ -10,8 +10,8 @@ import com.pyj.customview.R;
 
 public class RadarViewActivity extends AppCompatActivity {
 
-    public static void actionStart(Activity activity){
-        Intent intent=new Intent(activity,RadarViewActivity.class);
+    public static void actionStart(Activity activity) {
+        Intent intent = new Intent(activity, RadarViewActivity.class);
         activity.startActivity(intent);
     }
 

@@ -128,14 +128,14 @@ public class HorizontalProgressBar extends View {
 
     public HorizontalProgressBar(Context context) {
         super(context);
-        this.context=context;
+        this.context = context;
     }
 
     public HorizontalProgressBar(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
         initPaint();
-        this.context=context;
+        this.context = context;
     }
 
     /**

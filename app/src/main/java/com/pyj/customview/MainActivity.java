@@ -21,35 +21,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void canvas(View v){
+    public void canvas(View v) {
         CanvasActivity.actionStart(this);
     }
 
-    public void horizontalProgressBar(View v){
+    public void horizontalProgressBar(View v) {
         HorizontalProgressBarActivity.actionStart(this);
     }
 
-    public void pieChartView(View v){
+    public void pieChartView(View v) {
         PieChartViewActivity.actionStart(this);
     }
 
-    public void checkView(View v){
+    public void checkView(View v) {
         CheckViewActivity.actionStart(this);
     }
 
-    public void path(View v){
+    public void path(View v) {
         PathActivity.actionStart(this);
     }
 
-    public void radarView(View v){
+    public void radarView(View v) {
         RadarViewActivity.actionStart(this);
     }
 
-    public void bessel(View v){
+    public void bessel(View v) {
         BesselActivity.actionStart(this);
     }
 
-    public void pathFillType(View v){
+    public void pathFillType(View v) {
         PathFillTypeViewActivity.actionStart(this);
     }
 

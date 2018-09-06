@@ -181,49 +181,49 @@ public class CustomViewOfPath extends View {
         canvas.drawPath(mPath, mPaint);
     }
 
-    private void addPath(Canvas canvas){
+    private void addPath(Canvas canvas) {
         canvas.translate(mWidth / 2, mHeight / 2);
         //canvas.scale(1,-1);                         // <-- 注意 翻转y坐标轴
 
         Path path = new Path();
         Path src = new Path();
 
-        path.addRect(-100,-100,100,100, Path.Direction.CW);
-        src.addCircle(0,0,50, Path.Direction.CW);
+        path.addRect(-100, -100, 100, 100, Path.Direction.CW);
+        src.addCircle(0, 0, 50, Path.Direction.CW);
 
         //path.addPath(src);
-        path.addPath(src,0,150);
+        path.addPath(src, 0, 150);
 
         mPaint.setColor(Color.BLACK);           // 绘制合并后的路径
-        canvas.drawPath(path,mPaint);
+        canvas.drawPath(path, mPaint);
 
     }
 
-    private void addArc(Canvas canvas){
+    private void addArc(Canvas canvas) {
         canvas.translate(mWidth / 2, mHeight / 2);
         //canvas.scale(1,-1);                         // <-- 注意 翻转y坐标轴
 
         Path path = new Path();
-        path.lineTo(100,100);
+        path.lineTo(100, 100);
 
-        RectF rectF=new RectF(0,0,200,200);
-        path.addArc(rectF,0,270f);
+        RectF rectF = new RectF(0, 0, 200, 200);
+        path.addArc(rectF, 0, 270f);
 
-        canvas.drawPath(path,mPaint);
+        canvas.drawPath(path, mPaint);
     }
 
-    private void arcTo(Canvas canvas){
+    private void arcTo(Canvas canvas) {
         canvas.translate(mWidth / 2, mHeight / 2);
         //canvas.scale(1,-1);                         // <-- 注意 翻转y坐标轴
 
         Path path = new Path();
         //path.moveTo(100,100);
-        path.lineTo(50,50);
+        path.lineTo(50, 50);
 
-        RectF rectF=new RectF(0,0,200,200);
-        path.arcTo(rectF,0,270f);
+        RectF rectF = new RectF(0, 0, 200, 200);
+        path.arcTo(rectF, 0, 270f);
 
-        canvas.drawPath(path,mPaint);
+        canvas.drawPath(path, mPaint);
     }
 
 

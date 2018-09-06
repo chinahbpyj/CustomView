@@ -20,8 +20,8 @@ public class CheckViewActivity extends AppCompatActivity {
 
     private int count;
 
-    public static void actionStart(Activity activity){
-        Intent intent=new Intent(activity,CheckViewActivity.class);
+    public static void actionStart(Activity activity) {
+        Intent intent = new Intent(activity, CheckViewActivity.class);
         activity.startActivity(intent);
     }
 
@@ -30,7 +30,7 @@ public class CheckViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkview);
 
-        checkView=findViewById(R.id.checkView);
+        checkView = findViewById(R.id.checkView);
 
         checkView.start(this);
     }

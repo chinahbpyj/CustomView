@@ -1,6 +1,6 @@
 package com.pyj.customview.bean;
 
-public class PieChartData{
+public class PieChartData {
     private String name;        // 名字
     private float value;        // 数值
     private float percentage;   // 百分比

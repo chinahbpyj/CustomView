@@ -18,9 +18,9 @@ public class CustomViewOfBessel extends View {
 
     private int which = 0;
 
-    private PointF start, end, control,control1, control2;
+    private PointF start, end, control, control1, control2;
 
-    private boolean isTwoBessel=true;
+    private boolean isTwoBessel = true;
 
     public void setTwoBessel(boolean twoBessel) {
         isTwoBessel = twoBessel;
@@ -47,9 +47,9 @@ public class CustomViewOfBessel extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(3f);
 
-        start = new PointF(0,0);
-        end = new PointF(0,0);
-        control = new PointF(0,0);
+        start = new PointF(0, 0);
+        end = new PointF(0, 0);
+        control = new PointF(0, 0);
 
         control1 = new PointF(0, 0);
         control2 = new PointF(0, 0);
@@ -58,20 +58,20 @@ public class CustomViewOfBessel extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        centerX = w/2;
-        centerY = h/2;
+        centerX = w / 2;
+        centerY = h / 2;
 
         // 初始化数据点和控制点的位置
-        start.x = centerX-200;
+        start.x = centerX - 200;
         start.y = centerY;
-        end.x = centerX+200;
+        end.x = centerX + 200;
         end.y = centerY;
         control.x = centerX;
-        control.y = centerY-100;
+        control.y = centerY - 100;
 
-        control1.x = centerX-200;
+        control1.x = centerX - 200;
         control1.y = centerY - 100;
-        control2.x = centerX+200;
+        control2.x = centerX + 200;
         control2.y = centerY - 100;
     }
 
@@ -79,10 +79,10 @@ public class CustomViewOfBessel extends View {
     public boolean onTouchEvent(MotionEvent event) {
         // 根据触摸位置更新控制点，并提示重绘
 
-        if(isTwoBessel){
+        if (isTwoBessel) {
             control.x = event.getX();
             control.y = event.getY();
-        }else{
+        } else {
             if (mode) {
                 control1.x = event.getX();
                 control1.y = event.getY();
@@ -137,18 +137,18 @@ public class CustomViewOfBessel extends View {
         }
     }
 
-    private void quadTo(Canvas canvas){
+    private void quadTo(Canvas canvas) {
         // 绘制数据点和控制点
         mPaint.setColor(Color.GRAY);
         mPaint.setStrokeWidth(20);
-        canvas.drawPoint(start.x,start.y,mPaint);
-        canvas.drawPoint(end.x,end.y,mPaint);
-        canvas.drawPoint(control.x,control.y,mPaint);
+        canvas.drawPoint(start.x, start.y, mPaint);
+        canvas.drawPoint(end.x, end.y, mPaint);
+        canvas.drawPoint(control.x, control.y, mPaint);
 
         // 绘制辅助线
         mPaint.setStrokeWidth(4);
-        canvas.drawLine(start.x,start.y,control.x,control.y,mPaint);
-        canvas.drawLine(end.x,end.y,control.x,control.y,mPaint);
+        canvas.drawLine(start.x, start.y, control.x, control.y, mPaint);
+        canvas.drawLine(end.x, end.y, control.x, control.y, mPaint);
 
         // 绘制贝塞尔曲线
         mPaint.setColor(Color.RED);
@@ -156,13 +156,13 @@ public class CustomViewOfBessel extends View {
 
         Path path = new Path();
 
-        path.moveTo(start.x,start.y);
-        path.quadTo(control.x,control.y,end.x,end.y);
+        path.moveTo(start.x, start.y);
+        path.quadTo(control.x, control.y, end.x, end.y);
 
         canvas.drawPath(path, mPaint);
     }
 
-    private void cubicTo(Canvas canvas){
+    private void cubicTo(Canvas canvas) {
         // 绘制数据点和控制点
         mPaint.setColor(Color.GRAY);
         mPaint.setStrokeWidth(20);
@@ -174,8 +174,8 @@ public class CustomViewOfBessel extends View {
         // 绘制辅助线
         mPaint.setStrokeWidth(4);
         canvas.drawLine(start.x, start.y, control1.x, control1.y, mPaint);
-        canvas.drawLine(control1.x, control1.y,control2.x, control2.y, mPaint);
-        canvas.drawLine(control2.x, control2.y,end.x, end.y, mPaint);
+        canvas.drawLine(control1.x, control1.y, control2.x, control2.y, mPaint);
+        canvas.drawLine(control2.x, control2.y, end.x, end.y, mPaint);
 
         // 绘制贝塞尔曲线
         mPaint.setColor(Color.RED);
@@ -184,7 +184,7 @@ public class CustomViewOfBessel extends View {
         Path path = new Path();
 
         path.moveTo(start.x, start.y);
-        path.cubicTo(control1.x, control1.y, control2.x,control2.y, end.x, end.y);
+        path.cubicTo(control1.x, control1.y, control2.x, control2.y, end.x, end.y);
 
         canvas.drawPath(path, mPaint);
     }

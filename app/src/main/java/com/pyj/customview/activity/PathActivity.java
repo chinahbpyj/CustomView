@@ -19,7 +19,7 @@ import com.pyj.customview.view.CustomViewOfPath;
 
 import java.util.ArrayList;
 
-public class PathActivity extends AppCompatActivity implements View.OnLongClickListener{
+public class PathActivity extends AppCompatActivity implements View.OnLongClickListener {
 
     private CustomViewOfPath path;
 
@@ -33,7 +33,7 @@ public class PathActivity extends AppCompatActivity implements View.OnLongClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activty_path);
 
-        path=findViewById(R.id.path);
+        path = findViewById(R.id.path);
 
         path.setOnLongClickListener(this);
     }

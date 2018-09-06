@@ -14,12 +14,12 @@ import java.util.ArrayList;
 
 //饼状图
 public class PieChartView extends View {
-    private ArrayList<PieChartData> dataSource=new ArrayList<>();
+    private ArrayList<PieChartData> dataSource = new ArrayList<>();
 
     private Paint mPaint = new Paint();
 
     private float startAngle;
-    private float sweepAngle=60f;
+    private float sweepAngle = 60f;
 
     private int mWidth;
     private int mHeight;
@@ -51,33 +51,33 @@ public class PieChartView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mWidth=w;
-        mHeight=h;
+        mWidth = w;
+        mHeight = h;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if(dataSource==null || dataSource.size()==0){
+        if (dataSource == null || dataSource.size() == 0) {
             return;
         }
 
-        canvas.translate(mWidth/2,mHeight/2);
+        canvas.translate(mWidth / 2, mHeight / 2);
         float r = (float) (Math.min(mWidth, mHeight) / 2 * 0.5);  // 饼状图半径
         RectF rectF = new RectF(-r, -r, r, r);
 
         for (int i = 0; i < dataSource.size(); i++) {
             mPaint.setColor(colors[i]);
             PieChartData pieChartData = dataSource.get(i);
-            sweepAngle=pieChartData.getValue();
+            sweepAngle = pieChartData.getValue();
             canvas.drawArc(rectF, startAngle, sweepAngle, true, mPaint);
-            startAngle+=pieChartData.getValue();
+            startAngle += pieChartData.getValue();
         }
     }
 
-    public void setDataSource(ArrayList<PieChartData> dataSource){
-        this.dataSource=dataSource;
+    public void setDataSource(ArrayList<PieChartData> dataSource) {
+        this.dataSource = dataSource;
         invalidate();
     }
 }

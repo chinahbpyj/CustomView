@@ -18,8 +18,8 @@ public class HorizontalProgressBarActivity extends AppCompatActivity {
     private Timer timer;
     private TimerTask timerTask;
 
-    public static void actionStart(Activity activity){
-        Intent intent=new Intent(activity,HorizontalProgressBarActivity.class);
+    public static void actionStart(Activity activity) {
+        Intent intent = new Intent(activity, HorizontalProgressBarActivity.class);
         activity.startActivity(intent);
     }
 
@@ -28,15 +28,15 @@ public class HorizontalProgressBarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horizontalprogressbar);
 
-        bar=findViewById(R.id.bar);
+        bar = findViewById(R.id.bar);
 
         initHorizontalProgressBar();
     }
 
-    private void initHorizontalProgressBar(){
-        timer=new Timer();
+    private void initHorizontalProgressBar() {
+        timer = new Timer();
 
-        timerTask=new TimerTask() {
+        timerTask = new TimerTask() {
             @Override
             public void run() {
                 count++;
@@ -44,7 +44,7 @@ public class HorizontalProgressBarActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(count>100){
+                        if (count > 100) {
                             destroy();
                             return;
                         }
@@ -57,18 +57,18 @@ public class HorizontalProgressBarActivity extends AppCompatActivity {
             }
         };
 
-        timer.schedule(timerTask,0,200);
+        timer.schedule(timerTask, 0, 200);
     }
 
-    private void destroy(){
-        if(timer!=null){
+    private void destroy() {
+        if (timer != null) {
             timer.cancel();
-            timer=null;
+            timer = null;
         }
 
-        if(timerTask!=null){
+        if (timerTask != null) {
             timerTask.cancel();
-            timerTask=null;
+            timerTask = null;
         }
     }
 
