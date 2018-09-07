@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="false"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -32,6 +33,10 @@
         <activity android:name=".activity.BesselActivity"/>
 
         <activity android:name=".activity.PathFillTypeViewActivity"/>
+
+        <activity android:name=".activity.PathMeasureActivity"/>
+
+        <activity android:name=".activity.SearchViewActivity"/>
 
     </application>
 

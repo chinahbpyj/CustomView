@@ -8,17 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import com.pyj.customview.R;
 import com.pyj.customview.view.CheckView;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class CheckViewActivity extends AppCompatActivity {
 
     private CheckView checkView;
-
-    private Timer timer;
-    private TimerTask timerTask;
-
-    private int count;
 
     public static void actionStart(Activity activity) {
         Intent intent = new Intent(activity, CheckViewActivity.class);

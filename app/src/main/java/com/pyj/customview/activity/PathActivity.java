@@ -23,6 +23,8 @@ public class PathActivity extends AppCompatActivity implements View.OnLongClickL
 
     private CustomViewOfPath path;
 
+    private int whichPoint = 0;
+
     public static void actionStart(Activity activity) {
         Intent intent = new Intent(activity, PathActivity.class);
         activity.startActivity(intent);
@@ -51,7 +53,6 @@ public class PathActivity extends AppCompatActivity implements View.OnLongClickL
         textView.setPadding((int) (dp_px * 16), (int) (dp_px * 24), (int) (dp_px * 12), 0);
         builder.setCustomTitle(textView);
 
-
         final ArrayList<String> chooseTypeTextList = new ArrayList<>();
 
         chooseTypeTextList.add("lineTo");
@@ -63,14 +64,14 @@ public class PathActivity extends AppCompatActivity implements View.OnLongClickL
         chooseTypeTextList.add("addArc");
         chooseTypeTextList.add("arcTo");
 
-        int whichPoint = -1;
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.single_choice_item, R.id.text1, chooseTypeTextList);
 
         builder.setSingleChoiceItems(adapter, whichPoint, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+
+                whichPoint = which;
 
                 path.setShowWhich(which);
             }

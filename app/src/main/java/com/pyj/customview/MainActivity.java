@@ -10,8 +10,10 @@ import com.pyj.customview.activity.CheckViewActivity;
 import com.pyj.customview.activity.HorizontalProgressBarActivity;
 import com.pyj.customview.activity.PathActivity;
 import com.pyj.customview.activity.PathFillTypeViewActivity;
+import com.pyj.customview.activity.PathMeasureActivity;
 import com.pyj.customview.activity.PieChartViewActivity;
 import com.pyj.customview.activity.RadarViewActivity;
+import com.pyj.customview.activity.SearchViewActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void pathFillType(View v) {
         PathFillTypeViewActivity.actionStart(this);
+    }
+
+    public void pathMeasure(View v){
+        PathMeasureActivity.actionStart(this);
+    }
+
+    public void searchView(View v){
+        SearchViewActivity.actionStart(this);
     }
 
 }
