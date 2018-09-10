@@ -14,7 +14,7 @@ import android.view.View;
 
 public class SearchView extends View {
     // 这个视图拥有的状态
-    public static enum State {
+    public enum State {
         NONE,
         STARTING,
         SEARCHING,
@@ -37,9 +37,6 @@ public class SearchView extends View {
 
     // 测量Path 并截取部分的工具
     private PathMeasure mMeasure;
-
-    // 默认的动效周期 2s
-    private int defaultDuration = 2000;
 
     // 控制各个过程的动画
     private ValueAnimator mStartingAnimator;
@@ -124,12 +121,10 @@ public class SearchView extends View {
 
             @Override
             public void onAnimationCancel(Animator animation) {
-
             }
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-
             }
         };
     }
@@ -137,33 +132,36 @@ public class SearchView extends View {
     private void animator() {
         switch (mCurrentState) {
             case STARTING:
+                mStartingAnimator.removeUpdateListener(mUpdateListener);
+                mSearchingAnimator.addUpdateListener(mUpdateListener);
                 // 从开始动画转换好搜索动画
                 mCurrentState = State.SEARCHING;
                 mSearchingAnimator.start();
                 break;
+
             case SEARCHING:
-                mSearchingAnimator.start();
                 break;
+
             case ENDING:
                 // 从结束动画转变为无状态
                 mCurrentState = State.NONE;
+                mEndingAnimator.removeUpdateListener(mUpdateListener);
                 break;
         }
     }
 
     private void initAnimator() {
+        int defaultDuration = 2000;
+
         mStartingAnimator = ValueAnimator.ofFloat(0, 1)
                 .setDuration(defaultDuration);
 
         mSearchingAnimator = ValueAnimator.ofFloat(0, 1)
                 .setDuration(defaultDuration);
+        mSearchingAnimator.setRepeatCount(ValueAnimator.INFINITE);
 
         mEndingAnimator = ValueAnimator.ofFloat(1, 0)
                 .setDuration(defaultDuration);
-
-        mStartingAnimator.addUpdateListener(mUpdateListener);
-        mSearchingAnimator.addUpdateListener(mUpdateListener);
-        mEndingAnimator.addUpdateListener(mUpdateListener);
 
         mStartingAnimator.addListener(mAnimatorListener);
         mSearchingAnimator.addListener(mAnimatorListener);
@@ -219,12 +217,32 @@ public class SearchView extends View {
     }
 
     public void startSearch() {
+        mStartingAnimator.addUpdateListener(mUpdateListener);
         mCurrentState = State.STARTING;
         mStartingAnimator.start();
     }
 
     public void endSearch() {
+        mSearchingAnimator.removeUpdateListener(mUpdateListener);
+        mSearchingAnimator.end();
+        mEndingAnimator.addUpdateListener(mUpdateListener);
         mCurrentState = State.ENDING;
         mEndingAnimator.start();
+
+    }
+
+    public void removeAll() {
+        mStartingAnimator.removeUpdateListener(mUpdateListener);
+        mStartingAnimator.end();
+
+        mSearchingAnimator.removeUpdateListener(mUpdateListener);
+        mSearchingAnimator.end();
+
+        mEndingAnimator.removeUpdateListener(mUpdateListener);
+        mEndingAnimator.end();
+
+        mAnimatorListener.onAnimationCancel(mStartingAnimator);
+        mAnimatorListener.onAnimationCancel(mSearchingAnimator);
+        mAnimatorListener.onAnimationCancel(mEndingAnimator);
     }
 }

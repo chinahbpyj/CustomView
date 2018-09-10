@@ -26,12 +26,18 @@ public class SearchViewActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
     }
 
-    public void start(View v){
+    public void start(View v) {
         searchView.startSearch();
     }
 
 
-    public void end(View v){
+    public void end(View v) {
         searchView.endSearch();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        searchView.removeAll();
     }
 }
