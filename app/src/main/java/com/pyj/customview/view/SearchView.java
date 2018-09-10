@@ -86,10 +86,10 @@ public class SearchView extends View {
 
         // 注意,不要到360度,否则内部会自动优化,测量不能取到需要的数值
         RectF oval1 = new RectF(-50, -50, 50, 50);          // 放大镜圆环
-        path_srarch.addArc(oval1, 45, 359.9f);
+        path_srarch.addArc(oval1, 45, 359.999f);
 
         RectF oval2 = new RectF(-100, -100, 100, 100);      // 外部圆环
-        path_circle.addArc(oval2, 45, 359.9f);
+        path_circle.addArc(oval2, 45, 359.999f);
 
         float[] pos = new float[2];
 
@@ -159,6 +159,7 @@ public class SearchView extends View {
         mSearchingAnimator = ValueAnimator.ofFloat(0, 1)
                 .setDuration(defaultDuration);
         mSearchingAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        mSearchingAnimator.setRepeatMode(ValueAnimator.RESTART);
 
         mEndingAnimator = ValueAnimator.ofFloat(1, 0)
                 .setDuration(defaultDuration);
@@ -193,20 +194,26 @@ public class SearchView extends View {
             case NONE:
                 canvas.drawPath(path_srarch, mPaint);
                 break;
+
             case STARTING:
                 mMeasure.setPath(path_srarch, false);
                 Path dst = new Path();
                 mMeasure.getSegment(mMeasure.getLength() * mAnimatorValue, mMeasure.getLength(), dst, true);
                 canvas.drawPath(dst, mPaint);
                 break;
+
             case SEARCHING:
                 mMeasure.setPath(path_circle, false);
                 Path dst2 = new Path();
                 float stop = mMeasure.getLength() * mAnimatorValue;
                 float start = (float) (stop - ((0.5 - Math.abs(mAnimatorValue - 0.5)) * 200f));
+
+                // float start =(float) (stop - ((0.5 - Math.abs(mAnimatorValue - 0.5)) * mMeasure.getLength()));
+
                 mMeasure.getSegment(start, stop, dst2, true);
                 canvas.drawPath(dst2, mPaint);
                 break;
+
             case ENDING:
                 mMeasure.setPath(path_srarch, false);
                 Path dst3 = new Path();
@@ -217,18 +224,27 @@ public class SearchView extends View {
     }
 
     public void startSearch() {
+        if (mCurrentState == State.ENDING ||
+                mCurrentState == State.STARTING) {
+            return;
+        }
+
         mStartingAnimator.addUpdateListener(mUpdateListener);
         mCurrentState = State.STARTING;
         mStartingAnimator.start();
     }
 
     public void endSearch() {
+        if (mCurrentState == State.STARTING ||
+                mCurrentState == State.ENDING) {
+            return;
+        }
+
         mSearchingAnimator.removeUpdateListener(mUpdateListener);
         mSearchingAnimator.end();
         mEndingAnimator.addUpdateListener(mUpdateListener);
         mCurrentState = State.ENDING;
         mEndingAnimator.start();
-
     }
 
     public void removeAll() {
